@@ -1,9 +1,49 @@
+
+fetch('header.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('GlobalHeader').innerHTML = data;
+
+        const header = document.querySelector('#TOPheader');
+
+        if (header) {
+            window.addEventListener('scroll', () => {
+                let scrollPosition = window.scrollY || document.documentElement.scrollTop;
+
+                if (scrollPosition > 0) {
+                    header.classList.add('white');
+                } else {
+                    header.classList.remove('white');
+                }
+            });
+        }
+    })
+    .catch(error => {
+        console.error('Error fetching header:', error);
+    });
+
+    fetch('footer.html')
+    .then(response => response.text())
+    .then(data => {
+        document.getElementById('GlobalFooter').innerHTML = data;
+    })
+    .catch(error => {
+        console.error('Error fetching footer:', error);
+    });
+
+
+
+
+
 let currentSlide = 0; // Keep track of the current slide
 let currentDot = 0;
 let currentBlock = 0;
 const slides = document.querySelectorAll('.slide'); // Get all slides
 const dots = document.querySelectorAll('.dot'); //Get all dots
 const blocks = document.querySelectorAll('.blocks > div')
+
+
+
 
 function showSlide() {
     // Remove the 'active' class from the current slide
@@ -53,19 +93,11 @@ dots.forEach((dot, index) => {
 })
 
 
-const header = document.querySelector('#TOPheader');
 
-window.addEventListener('scroll', () => {
-    let scrollPosition = window.scrollY || document.documentElement.scrollTop;
 
-    // Add 'white' class if scrolled down
-    if (scrollPosition > 0) {
-        header.classList.add('white');
-        
-    } else {
-        header.classList.remove('white');
-        
-    }
-});
+
+
+
+
 
 
